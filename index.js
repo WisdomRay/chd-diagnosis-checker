@@ -8,11 +8,19 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-    origin: 'http://localhost:5173', // Allow only requests from this origin
-    methods: ['GET', 'POST'], // Allow only these HTTP methods
-    allowedHeaders: ['Content-Type'] // Allow only these headers
-}));
+const corsOptions = {
+    origin: 'https://chd-diagnosis-checker-new.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  };
+  
+app.use(cors(corsOptions));
+
+// app.use(cors({
+//     origin: 'http://localhost:5173', // Allow only requests from this origin
+//     methods: ['GET', 'POST'], // Allow only these HTTP methods
+//     allowedHeaders: ['Content-Type'] // Allow only these headers
+// }));
 
 app.use(bodyParser.json());
 
