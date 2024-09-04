@@ -32,7 +32,9 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/chd-risk", formData);
+      // Use environment variable for the API URL
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const response = await axios.post(`${API_URL}/chd-risk`, formData);
       setResult(response.data);
     } catch (error) {
       console.error("There was an error!", error);
